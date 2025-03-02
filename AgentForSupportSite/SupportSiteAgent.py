@@ -50,13 +50,12 @@ structured_llm = ChatAnthropic(
 #########################################################
 # Define Support Documentation/Links Retrieval
 start_urls = [
-
     "https://support.neonode.com/docs/display/AIRTSUsersGuide/Introduction"
     #"https://support.neonode.com/docs/display/AIRTSUsersGuide",
     #"https://support.neonode.com/docs/display/NIPB",
     #"https://support.neonode.com/docs/display/ZFPUG",
     #"https://support.neonode.com/docs/display/workbench",
-    #"https://support.neonode.com/docs/display/QA/Neonode+Help+Center"
+    #"https://support.neonode.com/docs/display/QA/Neonode+Help+Center" commented out for time saving purposes
 ]
 
 warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
