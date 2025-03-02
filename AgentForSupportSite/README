@@ -1,0 +1,78 @@
+# AI Support Site Agent
+Work in progress...
+
+## Project Overview
+This repository contains an AI-powered Support Site Agent that retrieves and processes documentation from the Neonode Support Site to assist users with troubleshooting, FAQs, and technical inquiries. It uses Retrieval-Augmented Generation (RAG) to enhance AI responses with relevant information from the support documentation.
+
+## Features
+- Crawls and retrieves support documentation from Neonode's support site
+- Filters out unsupported file types (e.g., images, videos, executables)
+- Processes documents with Unstructured API for efficient text extraction
+- Stores and retrieves knowledge using an In-Memory Vector Database
+- Integrates Large Language Models (LLMs) from Anthropic Claude and Groq for intelligent responses
+- Uses Tesseract OCR for extracting text from images in PDFs
+- Provides support ticket creation and FAQ retrieval
+
+## Installation
+### 1. Clone the Repository
+```
+git clone https://github.com/nikeolabi/AI-repository.git
+cd AI-repository
+```
+
+### 2. Create and Activate a Virtual Environment
+```
+python -m venv .venv
+# Activate venv (Windows)
+.venv\Scripts\Activate
+```
+
+### 3. Install Dependencies
+```
+pip install -r requirements.txt
+```
+
+### 4. Set Up Environment Variables
+Create a `.env` file and add the following:
+```
+GROQ_API_KEY=your-groq-api-key
+ANTHROPIC_API_KEY=your-anthropic-api-key
+```
+
+### 5. Ensure Tesseract OCR is Installed
+Download & install Tesseract OCR, then add the path to the `.env` file:
+```
+TESSERACT_CMD=C:\Program Files\Tesseract-OCR\tesseract.exe
+```
+
+## Running the AI Support Agent
+```
+python SupportSiteAgent.py
+```
+This starts the AI chatbot, which can answer technical questions by searching the support documentation.
+
+## How It Works
+1. Retrieves support site pages using BeautifulSoup
+2. Filters out unsupported file types (SVG, PNG, ZIP, etc.)
+3. Processes documentation using Unstructured API
+4. Embeds text using Hugging Face models
+5. Stores knowledge in an In-Memory Vector Database
+6. Retrieves relevant data for answering user questions
+
+## Available Functions
+### fetch_documentation(query: str) -> str
+Retrieves relevant documentation snippets based on user queries.
+
+### fetch_faq(topic: str) -> str
+Returns FAQ answers from a predefined knowledge base.
+
+### create_support_ticket(issue: str, email: str) -> str
+Creates a support ticket for further assistance.
+
+### process_file(file_path: str) -> str
+Processes a document and extracts its text, skipping unsupported formats.
+
+## Future Improvements
+- Improve vector search ranking for more accurate results
+- Enable chatbot conversation memory to track previous user queries
+- Enhance multi-language support using additional embedding models
