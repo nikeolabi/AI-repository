@@ -82,7 +82,7 @@ def get_all_subpages(start_urls, max_depth):
             full_url = urljoin(domain, href)
             
              # Skip unsupported file types
-            # ✅ Convert to lowercase and check if the URL contains an unsupported file type
+            # Convert to lowercase and check if the URL contains an unsupported file type
             unsupported_types = ['.svg', '.mp4', '.zip', '.exe', '.dmg']
             if any(ext in full_url.lower() for ext in unsupported_types):
                 logging.warning(f"Skipping unsupported file: {full_url}")
