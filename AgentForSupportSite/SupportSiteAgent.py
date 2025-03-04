@@ -30,18 +30,19 @@ load_dotenv(override=True)
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # API Keys
-if not os.environ.get("GROQ_API_KEY"):
-    os.environ["GROQ_API_KEY"] = getpass.getpass("Enter API key for Groq: ")
-GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+#if not os.environ.get("GROQ_API_KEY"):
+#    os.environ["GROQ_API_KEY"] = getpass.getpass("Enter API key for Groq: ")
+#GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 
 ##########################################################
 # Initialize LLMs
+"""
 retrieval_llm = ChatGroq(
     model_name="llama-3.3-70b-versatile", 
     temperature=0.6, 
     api_key=GROQ_API_KEY)
-
+"""
 structured_llm = ChatAnthropic(
     model_name="claude-3-5-sonnet-20241022",
     temperature=0.5, 
