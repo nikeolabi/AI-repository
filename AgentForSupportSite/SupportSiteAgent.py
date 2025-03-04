@@ -94,7 +94,7 @@ def get_all_subpages(start_urls, max_depth):
 
 ############################################################
 # Support Documentation Loading and Retrieval
-urls = get_all_subpages(start_urls, max_depth=2)
+urls = get_all_subpages(start_urls, max_depth=1) # set to 1 for time saving purpose
 #loader = UnstructuredURLLoader(urls, mode="text") # Load text content from URLs
 loader = UnstructuredURLLoader(urls)
 documents = loader.load()
