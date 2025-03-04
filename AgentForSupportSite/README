@@ -35,7 +35,7 @@ pip install -r requirements.txt
 ### 4. Set Up Environment Variables
 Create a `.env` file and add the following:
 ```
-GROQ_API_KEY=your-groq-api-key
+GROQ_API_KEY=your-groq-api-key - this key is not used in the current version
 ANTHROPIC_API_KEY=your-anthropic-api-key
 ```
 
