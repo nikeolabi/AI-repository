@@ -5,8 +5,7 @@
 
 import numpy as np
 import pandas as pd
-import matplotlib
-import matplotlib.pyplot as plt
+
 import streamlit as st
 from sklearn.datasets import fetch_openml
 import joblib
@@ -16,6 +15,7 @@ from io import BytesIO
 from PIL import Image
 from streamlit_drawable_canvas import st_canvas
 from PIL import Image, ImageOps
+import matplotlib.pyplot as plt
 
 import os
 import zipfile
