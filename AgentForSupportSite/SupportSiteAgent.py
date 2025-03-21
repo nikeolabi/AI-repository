@@ -29,11 +29,20 @@ load_dotenv(override=True)
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
+# Suppress warnings
+warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
+
 # API Keys
-#if not os.environ.get("GROQ_API_KEY"):
-#    os.environ["GROQ_API_KEY"] = getpass.getpass("Enter API key for Groq: ")
-#GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+"""
+if not os.environ.get("GROQ_API_KEY"):
+    os.environ["GROQ_API_KEY"] = getpass.getpass("Enter API key for Groq: ")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+"""
+
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+
+#print(f"DEBUG: GROQ_API_KEY Retrieved: {'SET' if GROQ_API_KEY else 'NOT SET'}")
+#print(f"DEBUG: ANTHROPIC_API_KEY Retrieved: {'SET' if ANTHROPIC_API_KEY else 'NOT SET'}")
 
 ##########################################################
 # Initialize LLMs
@@ -49,17 +58,16 @@ structured_llm = ChatAnthropic(
     api_key=ANTHROPIC_API_KEY)
 
 #########################################################
-# Define Support Documentation/Links Retrieval
+# Define Support Documentation/Linksto retrieve
 start_urls = [
     "https://support.neonode.com/docs/display/AIRTSUsersGuide/Introduction"
     #"https://support.neonode.com/docs/display/AIRTSUsersGuide",
     #"https://support.neonode.com/docs/display/NIPB",
     #"https://support.neonode.com/docs/display/ZFPUG",
     #"https://support.neonode.com/docs/display/workbench",
-    #"https://support.neonode.com/docs/display/QA/Neonode+Help+Center" commented out for time saving purposes
+    #"https://support.neonode.com/docs/display/QA/Neonode+Help+Center"
 ]
 
-warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning)
 
 def get_all_subpages(start_urls, max_depth):
     visited = set()
@@ -94,7 +102,7 @@ def get_all_subpages(start_urls, max_depth):
 
 ############################################################
 # Support Documentation Loading and Retrieval
-urls = get_all_subpages(start_urls, max_depth=1) # set to 1 for time saving purpose
+urls = get_all_subpages(start_urls, max_depth=1)
 #loader = UnstructuredURLLoader(urls, mode="text") # Load text content from URLs
 loader = UnstructuredURLLoader(urls)
 documents = loader.load()
@@ -167,7 +175,10 @@ def check_ticket_status(ticket_id: int) -> str:
 ########################################################
 # Create Unified Agent Prompt
 prompt = """
-You are a Support Site Agent, designed to assist users with troubleshooting, FAQs, documentation, and support inquiries.
+You are a Support Site Agent for company called Neonode, designed to assist users with troubleshooting, FAQs, documentation, and support inquiries.
+The product you support is a so called Touch Senor Module (TSM) that enables touch functionality on various screens. The company has also another vertical for "in cabim monitoring" (ICM) that is used in vehicles.
+You do not have information about the ICM product, but you can assist with general support inquiries.
+You have access to a knowledge base of support documentation and FAQs related to the TSM product.
 Your responses should be professional, concise, and helpful.
 
 Response Guidelines:
@@ -186,6 +197,12 @@ Response Guidelines:
    - Provide a brief and clear response based on the tool's output
    - Offer additional assistance if needed
 
+4. Always define acronyms when they're first mentioned
+
+5. Provide clear, direct answers without requiring multiple follow-up questions
+
+6. Anticipate that users might not be familiar with our technical terminology
+
 Remember:
 - Keep responses concise and solution-focused.
 - Avoid unnecessary information or overly technical language.
@@ -194,6 +211,52 @@ Remember:
 
 ########################################################
 # Create Unified Agent
+try:
+    print("DEBUG: Creating agent...")
+    agent = create_react_agent(
+        model=structured_llm,
+        tools=[fetch_faq, create_support_ticket, check_ticket_status, close_support_ticket, fetch_documentation],
+        prompt=prompt,
+        checkpointer=MemorySaver()
+    )
+    print("DEBUG: Agent created successfully!")
+except Exception as e:
+    print(f"ERROR: Failed to create agent - {e}")
+
+
+def chat():
+    print("\nWelcome to the Support Site Assistant! How can I assist you today? Type 'quit' to exit.\n")
+    while True:
+        user_input = input("\nUser: ")
+        if user_input.lower() in ["quit", "exit", "q"]:
+            print("\nThank you for reaching out. Have a great day!")
+            break
+        
+        #print(f"DEBUG: User input received: {user_input}")
+
+        try:
+            #print("DEBUG: Invoking agent...")
+            result = agent.invoke(
+                {"messages": [HumanMessage(content=user_input)]},
+                config={"configurable": {"thread_id": "thread1"}}
+            )
+            #print("DEBUG: Agent invoked successfully!")
+            #print(f"DEBUG: Raw result: {result}")
+            
+            if result.get("messages"):
+                last_message = result["messages"][-1]
+                if hasattr(last_message, "content"):
+                    print("\nSupport Agent:", last_message.content)
+                else:
+                    print("DEBUG: Last message has no content attribute.")
+            else:
+                print("DEBUG: No messages in the result.")
+                
+        except Exception as e:
+            print(f"ERROR: Agent invocation failed - {e}")
+
+  
+""" 
 agent = create_react_agent(
     model=structured_llm,
     tools=[fetch_faq, create_support_ticket, check_ticket_status, close_support_ticket, fetch_documentation],
@@ -213,6 +276,7 @@ def chat():
             last_message = result["messages"][-1]
             if hasattr(last_message, "content"):
                 print("\nSupport Agent:", last_message.content)
+"""
 
 if __name__ == "__main__":
     chat()
