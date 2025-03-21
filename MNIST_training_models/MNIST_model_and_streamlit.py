@@ -28,6 +28,7 @@ saved_models_folder = 'SavedModels/'
 current_model = ''
 threshold = 230
 
+print("Current dir = ", os.getcwd())
 # Load the scalers
 scaler = joblib.load(saved_models_folder + 'scaler.pkl')
 pca_scaler = joblib.load(saved_models_folder + 'pca_scaler.pkl')
