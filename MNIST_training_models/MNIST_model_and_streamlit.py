@@ -20,6 +20,9 @@ import matplotlib.pyplot as plt
 import os
 import zipfile
 
+import logging
+logging.basicConfig(level=logging.INFO)
+logging.info("Current working directory: %s", os.getcwd())
 
 # Predefined model names (this could be your model names like 'Random Forest', 'SVM', etc.)
 model_names = ["ExtraTreesClassifier", "Random Forest", "SVM Classifier (non linear)", "SVM Classifier (pca)"]
