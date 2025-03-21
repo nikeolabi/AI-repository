@@ -27,7 +27,7 @@ logging.info("Current working directory: %s", os.getcwd())
 # Predefined model names (this could be your model names like 'Random Forest', 'SVM', etc.)
 model_names = ["ExtraTreesClassifier", "Random Forest", "SVM Classifier (non linear)", "SVM Classifier (pca)"]
 extraction_folder = 'extracted_models/'
-saved_models_folder = 'SavedModels/'
+saved_models_folder = 'MNIST_training_models/SavedModels/'
 current_model = ''
 threshold = 230
 
