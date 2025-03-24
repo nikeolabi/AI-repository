@@ -228,7 +228,7 @@ if nav == "Predict":
     st.write("In this section, you can submit your own handwritten digit and see how the models classify it.\nPlease upload only one digit at a time!")
     st.write("")
     st.write("SVM Classifier was trained on just 10 000 instances, making it the lightest model in the comparison. Nevertheless, it performs competitively against both the Random Forest and Decision Tree models.")
-    st.write("Note: The digits 6 and 9 are frequently misclassified by all models.\nDigit 6 is often predicted as 5, while 9 is commonly classified correctly, but sometimes confused with 4 or 7.")
+    st.write("_Note_: The digits 6 and 9 are frequently misclassified by all models.\nDigit 6 is often predicted as 5, while 9 is commonly classified correctly, but sometimes confused with 4 or 7.")
     st.write("")
     st.write("")
 
