@@ -198,8 +198,7 @@ if nav == "About":
     st.title("Streamlit Application for Handwritten Digit Recognition")
     st.header("About")
     st.write("Created by Nike Olabiyi, 28 Feb. 2025, v.1.0")
-    st.write("""The purpose of this application is to recognize a digit handwritten by the user. To get started, navigate to the "Predict" section\n
-              and draw a single digit.""")
+    st.write("""The purpose of this application is to recognize a digit handwritten by the user.\nTo get started, navigate to the "Predict" section and draw a single digit.""")
     st.write("")
     st.write("""
         **Four different models were trained on the MNIST dataset for handwritten digit classification:**  
@@ -215,7 +214,7 @@ if nav == "About":
 
         Each model offers a different approach to recognizing digits, allowing for comparison in terms of accuracy, performance, and computational efficiency.
         """)
-    st.write("If you want to know about the data set the model was tarined on, press About MNIST button below")
+    st.write("If you want to know about the data set the model was tarined on, press About MNIST button below:")
     # Button to trigger prediction
     if st.button("About MNIST"):
         mnist = fetch_openml('mnist_784', version=1, cache=True, as_frame=False)
@@ -225,8 +224,8 @@ if nav == "About":
 # PREDIC view
 # =============================================================================
 if nav == "Predict":
-    st.title("Test the model's ability to identify your handwritten digit")
-    st.write("In this section, you can upload your own handwritten digit and see how the model classifies it.\nPlease upload only one digit at a time!")
+    st.title("Test the models' ability to identify your handwritten digit")
+    st.write("In this section, you can submit your own handwritten digit and see how the models classify it.\nPlease upload only one digit at a time!")
     st.write("")
     st.write("SVM Classifier was trained on just 10 000 instances, making it the lightest model in the comparison. Nevertheless, it performs competitively against both the Random Forest and Decision Tree models.")
     st.write("Note: The digits 6 and 9 are frequently misclassified by all models.\nDigit 6 is often predicted as 5, while 9 is commonly classified correctly, but sometimes confused with 4 or 7.")
