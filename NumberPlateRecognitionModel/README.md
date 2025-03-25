@@ -26,4 +26,4 @@ Run the notebooks in the following order:
 ## SSD Model limitations:
 It was trained on a small dataset (692 car images).
 The dataset primarily represents license plates from the USA and India (sourced from Kaggle).
-Thus, number plates from other counties are not easily detected by te SSD model.
+Thus, number plates from other counties are not easily detected by the trained SSD model.
