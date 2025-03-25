@@ -18,8 +18,10 @@ This project consists of two main components: number plate **detection** and **c
 ## Usage
 Run the notebooks in the following order:
 
-1. `NumberPlateRecognitionModel.ipynb` – detects license plates from vehicle images.
-2.  `PlateDetection.py– recognizes characters from the detected plates.
+1. `NumberPlateRecognitionModel.ipynb` – training of the model Step 0 to 9. You need to open the file in Jupyter Notebook   
+    to see the Steps. All paths must be changes to the actual ones.
+2.  `PlateDetection.py` – recognizes characters from the detected plates. Can be opened in VSCode and run there. The demo 
+    images to recognize are available in folder `DemoPictures`.
 
 ## SSD Model limitations:
 It was trained on a small dataset (692 car images).
