@@ -6,6 +6,7 @@ This project consists of two main components: number plate **detection** and **c
 ## Components
 - `NumberPlateRecognitionModel.ipynb`: Uses TensorFlow Object Detection API with the pretrained SSD MobileNet v2 FPNLite 320x320 (version 17). In this part the model is trained to recognize number plates on a car image from Kaggle dataset.
 - `PlateDetection.py`: Responsible for detecting and cropping number plates from images and recognizing the characters and digits using EasyOCR.
+- The trained model is saved in Model folder. It is then used in `PlateDetection.py`.
 
 
 ## Technologies Used
