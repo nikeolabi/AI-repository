@@ -16,10 +16,10 @@ This project consists of two main components: number plate **detection** and **c
 - NumPy, Matplotlib, etc.
 
 ## Usage
-Run the notebooks in the following order:
+Run the notebook and py scriot in the following order:
 
 1. `NumberPlateRecognitionModel.ipynb` – training of the model Step 0 to 9. You need to open the file in Jupyter Notebook   
-    to see the Steps. All paths must be changes to the actual ones.
+    to see the Steps. All paths must be changes to the actual ones. This part is not mandatory.
 2.  `PlateDetection.py` – recognizes characters from the detected plates. Can be opened in VSCode and run there. The demo 
     images to recognize are available in folder `DemoPictures`.
 
