@@ -16,7 +16,7 @@ This project consists of two main components: number plate **detection** and **c
 
 ## Usage
 
-# Prerequisits: Python 3.8.0
+### Prerequisits: Python 3.8.0
 
 Run the notebook and py scriot in the following order:
 
