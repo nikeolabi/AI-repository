@@ -4,7 +4,7 @@
 This project consists of two main components: number plate **detection** and **character/number recognition** using different AI models. It aims to localize license plates in vehicle images and extract the textual content from them.
 
 ## Components
-- `NumberPlateRecognitionModel.ipynb`: Uses TensorFlow Object Detection API with the pretrained SSD MobileNet v2 FPNLite 320x320 (version 17). In this part the model is trained to recognize number plates on car images from Kaggle dataset. This is for demonstration purpose only since the model is already trained and saved. The trained model is saved in Model folder. It is then used in `PlateDetection.py`.
+- `NumberPlateRecognitionModel.ipynb`: Uses TensorFlow Object Detection API with the pretrained SSD MobileNet v2 FPNLite 320x320 (version 17). In this part the model is trained to recognize number plates on car images from Kaggle dataset. This part is not mandatory to run since the model is already trained and saved. The trained model is saved in Model folder. It is then used in `PlateDetection.py`.
 - `PlateDetection.py`: Responsible for detecting and cropping number plates from images and recognizing the characters and digits using EasyOCR.
 - The object_detection package is part of the TensorFlow Object Detection API and must be available for the script to function properly. To avoid cloning the entire API repository, the necessary parts of the package were copied directly into the project root for convenience.
 
