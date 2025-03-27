@@ -26,7 +26,7 @@ Run the notebook and py scriot in the following order:
     images to recognize are available in folder `DemoPictures`.
     
 ### Known issues: 
-When making IMPORTS in `RadarsInMovement.ipynb` an error will appear:
+When making IMPORTS in `PlateDetection.py` an error will appear:
 - ImportError: cannot import name 'builder' from 'google.protobuf.internal' (C:\Users\path\RadarsInMovement\RadarsInMovEnv\lib\site-packages\google\protobuf\internal__init__.py)
 - The builder is missing and must by copied into your protobuf\internal
 - The missing file can be found in this Git repository in ROOT folder:
