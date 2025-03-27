@@ -18,7 +18,7 @@ This project consists of two main components: number plate **detection** and **c
 
 ### Prerequisits: Python 3.8.0
 
-Run the notebook and py scriot in the following order:
+Run the notebook and `PlateDetection.py` in the following order:
 
 1. `NumberPlateRecognitionModel.ipynb` – training of the model Step 0 to 9. You need to open the file in Jupyter Notebook   
     to see the Steps. All paths must be changes to the actual ones. This part is OPTIONAL.
